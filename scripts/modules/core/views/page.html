@@ -1,0 +1,107 @@
+<div id="homeContainer">
+    <div ng-controller="menuController as menu" id="menu" class="ng-cloak" ng-cloak>
+        <div id="menuIcon" class="mobile-hide">
+            <menu-icon></menu-icon>
+        </div>
+        <md-sidenav md-swipe-left="nextMenu()" md-swipe-right="prevMenu()" md-component-id="wmtMenu" class="md-sidenav-left md-disable-backdrop md-closed" id="wmtSideNav" ng-mouseover="openWmtMenu(activeView)"  ng-mouseleave="closeSideMenu()">
+            <div class="WMTtitle">WMT</div>
+            <div class="ng-cloak" ng-if="isAuthenticated()" id="menuContainer">
+                <div id="logo">
+                    <a ng-click="validateNavigation('landingPage')">
+                        <img src="../images/logo-white.svg" class="wms-logo m-t-md center-block" width="28px" height="28px" id="wmt-logo">
+                    </a>
+                </div>
+                <i class="material-icons close-side-menu white" ng-click="closeSideMenu()" id="close-side-menu" ng-show="isMenuOpened">close</i>
+                <md-tabs md-dynamic-height md-border-bottom class="md-primary" md-selected="$root.activeMenuView">
+                    <md-tab ng-repeat="menuView in wmtMenu" label="menuView.name">
+                        <div ng-repeat="menuRow in menuView.rows" authaccess auth-params="{{menuRow.permission}}" id="{{menuRow.name}}" class='wmtMenuItemRow' ng-class="[menuRow.active, menuRow.folderClass, menuRow.above]" ng-click="validateFolder(menuRow);">
+                            <div class="menuRow">
+                                <img ng-src="{{menuRow.icon}}" class="menu-item-logo pull-left" width="28px" height="28px" id="{{menuRow.id}}">
+                                <span class="menu-item-text">{{menuRow.name}}</span>
+                                <img ng-if="menuRow.isFolder" id="arrow-folder" ng-class="menuRow.folder" src="../images/arrow-folder.svg" class="menu-item-folder">
+                            </div>
+                            <div ng-if="menuRow.isFolder" class="menuRowChildContainer">
+                                <div ng-repeat="menuRowChild in menuRow.stateChilds" authaccess auth-params="{{menuRowChild.permission}}" element="menuRowChild" ng-if="menuRowChild.available" ng-class="menuRowChild.active" class="wmtMenuSubItemRow above" ng-click="validateNavigation(menuRowChild.state)" ng-init="validateFolder()">{{menuRowChild.name}}</div>
+                            </div>
+                        </div>
+                    </md-tab>
+                </md-tabs>
+            </div>
+        </md-sidenav>
+        <div class="menu top p-x-lg">
+            <div class="white ng-cloak active-module" ng-if="isAuthenticated()">
+                <div class="mobile-show ">
+                    <menu-icon id="menuIconMobile"></menu-icon>
+                </div>
+                <div ng-if="!$state.is('home.storehouses.list') && !$state.is('home.landingPage') && !$state.is('home.inbound.search') && !$state.is('home.inbound.qc') && !$state.is('home.inbound.print') && !$state.is('home.inbound.putaway') && !$state.is('home.movement') && !$state.is('home.movementShelf') && !$state.is('home.pick') && !$state.is('home.pack') && !$state.is('home.packPrint') && !$state.is('home.dispatch') && !$state.is('home.admin.products') && !$state.is('home.admin.users') && !$state.is('home.admin.roles') && !$state.is('home.reInbound.search') && !$state.is('home.reInbound.qc') && !$state.is('home.reInbound.print') && !$state.is('home.reInbound.putaway')"
+                    class="left back-btns">
+                    <md-tooltip md-direction="bottom">
+                        {{ 'GO_BACK' | translate }}
+                    </md-tooltip>
+                    <i previousState ng-click="prevStateCtrl.toPreviousState()" class="block left fsize-24 m-r-md material-icons go-back" ng-if="!$state.is('home.storehouses.create') && !$state.is('home.storehouses.edit') && !$state.is('home.locationsCreate') && !$state.is('home.locationsChildCreate') && !$state.is('home.locationEdit') && !$state.is('home.locationTypeList.edit') && !$state.is('home.locationTypeList.create') && !$state.is('home.roles.create') && !$state.is('home.roles.edit') && !$state.is('home.systemInfo') && !$state.is('home.admin.masterInventory')">keyboard_arrow_left</i>
+                </div>
+                <div id="active-module" update-title></div>
+                <div ng-class="vm.menuDropicon" class="right" id="menu-location-drop-down-icon" ng-if="$state.is('home.locationsChildCreate') || $state.is('home.locationsChild')" ng-controller="parentLocations as vm">
+                    <i class="material-icons white drop-icon" ng-click="vm.toggleParents()">keyboard_arrow_down</i>
+                    <div class="gray-light-bg gray-dark parent-locations pa" ng-show="vm.showParents">
+                        <header class="p-l-lg">
+                            <span class="uppercase fsize-12">{{ 'LOCATIONS.HOW_YOU_GOT' | translate }}</span> {{vm.lastLocationName}}
+                        </header>
+                        <ul class="pr">
+                            <li class="float-none" ng-repeat="parentLocation in vm.parentLocations" data-text="{{ 'LOCATIONS.HERE' | translate }}">
+                                <a class="gray-dark" ng-click="getParentLocations(parentLocation.sid)" href="{{parentLocation.link}}">{{parentLocation.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul ng-if="isAuthenticated()" data-ng-init="init()">
+                <li ng-click="showExport()" class="export-trigger fade" ng-if="$state.is('home.locations') || $state.is('home.locationsChild') || $state.is('home.tasks') || showExportBtn || $state.is('home.tasks.error')">
+                    <span class="df" ng-include="'../images/export-icon-circle.svg'"></span>
+                </li>
+                <div class="export-menu hide" ng-controller="importController as vm" ng-if="$state.is('home.locations') || $state.is('home.locationsChild') || $state.is('home.tasks') || $state.is('home.tasks.error') || showExportBtn">
+                    <ul>
+                        <li id="export" ng-click="vm.exportStorehouse()" authaccess auth-params="LOCATION_EXPORT:{{vm.storehouseid}}"> {{ 'EXPORT' | translate }} </li>
+                        <li id="import" ng-click="vm.openImportMenu()" authaccess auth-params="LOCATION_IMPORT:{{vm.storehouseid}}">{{ 'IMPORT' | translate }} </li>
+                        <li ng-if="vm.init" id="tasks" ui-sref="home.tasks({storehouseid: vm.storehouseid, targetId: vm.storehouseid})" authaccess auth-params="LOCATION_IMPORT:{{vm.storehouseid}}"> {{ 'TASKS' | translate }} </li>
+                    </ul>
+                </div>
+                <li ng-click="showUserInfo()" class="user-info-trigger" id="showUserInfo">
+                    <img class="circle border" ng-src="{{userPhoto}}" width="22px" height="22px">
+                </li>
+                <div class="user-info hide" id="user-info">
+                    <div class="user-name" ng-hide="showStorehousesMenu">
+                        <div class="userTitle">{{userName}}</div>
+                        <div class="storehouseTitle">{{currentStoreHouse.name}}</div>
+                    </div>
+<!--                     TODO translate those terms -->
+                    <ul ng-hide="showStorehousesMenu">
+                        <li id="adminView" ng-show="userInfo.acl.hasAdminModule && userInfo.acl.hasTaskModule"> <a ng-click="openWmtMenu(0)">Admin View</a> </li>
+                        <li id="taskView" ng-show="userInfo.acl.hasAdminModule && userInfo.acl.hasTaskModule"> <a ng-click="openWmtMenu(1)">Task View</a> </li>
+                        <li id="systemView" ng-show="userInfo.acl.admin && userInfo.acl.hasTaskModule"> <a ng-click="openWmtMenu(2)">System View</a> </li>
+                        <li id="switchStoreHouse" ng-hide="userInfo.acl.hasOneShOnly"> <a ng-click="openStorehousesMenu($event)">Switch Storehouse</a> </li>
+                        <li id="sellerCenter"> <a target="_blank" href="https://sellercenter.jumia.com.ng/">Seller Center</a> </li>
+                        <li> <a ng-click="openFeedbackForm()">Feedback</a> </li>
+                        <li id="logout-link"> <a ng-click="menu.logout()">Logout</a> </li>
+                    </ul>
+                    <div class="user-name" ng-show="showStorehousesMenu">
+                        <div class="userTitle">switch storehouse</div>
+                        <div class="storehouseTitle">{{currentStoreHouse.name}}</div>
+                    </div>
+                    <ul ng-show="showStorehousesMenu">
+                        <form ng-submit="selectStorehouseSearch(searchTermStorehouse)">
+                            <input id="search-storehouses" name="searchStorehouses" ng-model="searchTermStorehouse" placeholder="{{ 'SEARCH_STOREHOUSES' | translate }}">
+                        </form>
+
+                        <li ng-repeat="sh in storeHouseList">
+                            <a ng-click="selectStorehouse(sh)">{{sh.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div id="page-content" ng-class="$root.menuStatus">
+        <ui-view ng-controller="eventsController" ng-mousemove="isUserLogged()"></ui-view>
+    </div>
+</div>

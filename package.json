@@ -1,0 +1,23 @@
+{
+    "name": "material-app",
+    "version": "1.0.0",
+    "description": "test app",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-packager . MyApp"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/macedobrito/material.git"
+    },
+    "author": "francisco",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/macedobrito/material/issues"
+    },
+    "homepage": "https://github.com/macedobrito/material#readme",
+    "dependencies": {
+        "electron": "^1.6.10"
+    }
+}

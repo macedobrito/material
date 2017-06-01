@@ -1,0 +1,27 @@
+{
+  "name": "material-app",
+  "description": "test app",
+  "main": "main.js",
+  "authors": [
+    "francisco"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/macedobrito/material",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.4",
+    "angular": "^1.6.4",
+    "jquery": "^3.2.1",
+    "angular-route": "^1.6.4",
+    "angular-translate": "^2.15.1",
+    "angular-ui-router": "^1.0.3",
+    "bootstrap-sass": "^3.3.7",
+    "angular-translate-loader-static-files": "^2.15.1"
+  }
+}

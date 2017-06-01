@@ -1,0 +1,14 @@
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+electron
+test/bower_components
+test/index.html
+test/coverage
+coverage
+app/scripts/directives.js
+app/scripts/vendor.js
+app/styles/vendor.css
+app/styles/main.css
