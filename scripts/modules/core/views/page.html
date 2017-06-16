@@ -1,7 +1,14 @@
 <div id="homeContainer">
-   asas <md-progress-circular md-mode="indeterminate" md-diameter="100" style="left:50%"></md-progress-circular>
-    <div ng-controller="menuController as menu" id="menu" class="ng-cloak" ng-cloak>
+    <div ng-controller="menuController as menuCtrl" id="menu" class="ng-cloak" ng-cloak>
+      <md-nav-bar
+      md-selected-nav-item="currentNavItem"
+      nav-bar-aria-label="navigation links">
+      <md-nav-item ng-repeat="menu in menuCtrl.menus" md-nav-sref="home.products" name="page1">
+        {{menu.name}}
+      </md-nav-item>
+    </md-nav-bar>
     </div>
     <div id="page-content">
+      <ui-view></ui-view>
     </div>
 </div>

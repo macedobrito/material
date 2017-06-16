@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <title>Sys </title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <link rel="stylesheet" href="./styles/general.scss">
-    <!-- <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/general.min.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap-grid/css/bootstrap-grid.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="./bower_components/md-color-picker/dist/mdColorPicker.min.css" rel="stylesheet" />
 </head>
 <!-- BOWER COMPONENTS -->
 <script src="./bower_components/jquery/dist/jquery.js"></script>
@@ -18,13 +21,20 @@
 <script src="./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 <script src="./bower_components/angular-route/angular-route.js"></script>
 <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<!-- <script src="./bower_components/tinycolor/dist/tinycolor-min.js"></script> -->
+<script src="./bower_components/md-color-picker/dist/mdColorPicker.js"></script>
 
 
 <!-- CORE -->
 <script src="scripts/modules/core/coreModule.js"></script>
 <script src="scripts/modules/core/routerModule.js"></script>
+<script src="scripts/directives/directiveModule.js"></script>
 <script src="scripts/modules/core/controllers/homeController.js"></script>
 <script src="scripts/modules/core/controllers/menuController.js"></script>
+<!-- DIRECTIVES -->
+<script src="scripts/directives/product-card/controller/productCard.js"></script>
+<!-- PRODUCTS -->
+<script src="scripts/modules/products/controllers/productsController.js"></script>
 <!--<script src="scripts/modules/core/constantsModule.js"></script>-->
 <!-- I18N -->
 <script src="scripts/modules/i18n/coreTranslations.js"></script>
@@ -40,8 +50,9 @@
 
 
 <body id="app-frame">
-    <h1>My App</h1>
-    <button type="button" class="btn btn-info" onclick="closeApp()">close</button>
+    <div>
+        <md-icon id="closeBtn" class="material-icons" onclick="closeApp()">close</md-icon>
+    </div>
     <ui-view></ui-view>
 </body>
 

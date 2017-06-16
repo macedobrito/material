@@ -39,4 +39,13 @@ angular.module('material.router', ['material']).config(function($stateProvider, 
                 name: 'TITLE.LANDINGPAGE'
             }
         })
+        .state('home.products', {
+            url: 'products',
+            controller: 'productsController',
+            controllerAs: 'productCtrl',
+            templateUrl: 'scripts/modules/products/views/products.html',
+            data: {
+                name: 'TITLE.PRODUCTS'
+            }
+        })
 });

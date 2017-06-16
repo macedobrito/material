@@ -1,0 +1,18 @@
+<div class="page-fill">
+    <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+        <md-input-container class="col-md-12 col-sm-12 col-xs-12 p-0 m-0 page-search-comp">
+            <input id="search-storehouses" name="searchStorehouses" ng-model="name" placeholder="Search a name">
+        </md-input-container>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+      <product-card></product-card>
+      <product-card></product-card>
+    </div>
+    <md-fab-speed-dial md-direction="right" class="addButton" ng-click="openCreateDialog($event)">
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-fab md-warn" ng-click="">
+                <md-icon class="material-icons" id="modal-controller">add</md-icon>
+            </md-button>
+        </md-fab-trigger>
+    </md-fab-speed-dial>
+</div>

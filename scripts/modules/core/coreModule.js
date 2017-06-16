@@ -1,6 +1,11 @@
-angular.module('material', ['ngMaterial', 'ui.router', 'material.router']).run(function($rootScope, $controller) {
+angular.module('material', [
+  'ngMaterial', 'mdColorPicker', 'ui.router', 'material.router', 'pascalprecht.translate',
+  'material.directives'
+]).run(function($rootScope, $controller) {
 
-}).config(function($mdThemingProvider) {
+})
+
+.config(function($mdThemingProvider) {
     $mdThemingProvider.definePalette('WMT-purple', {
         '50': '#fdfbfd',
         '100': '#e4c8e0',
@@ -20,6 +25,5 @@ angular.module('material', ['ngMaterial', 'ui.router', 'material.router']).run(f
     });
     $mdThemingProvider.theme('default')
         .primaryPalette('purple')
-        .accentPalette('orange');
+        .accentPalette('purple');
 });
-

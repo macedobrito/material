@@ -1,0 +1,44 @@
+<div id="createProjectDialog">
+    <div class="create-dialog-title">Create new product</div>
+    <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+        <md-tab label="Basic Infos">
+            <md-content>
+                <form ng-submit="nextTab()" name="editProduct">
+                    <md-input-container class="p-0 m-b-0">
+                        <input id="name" ng-model="name" placeholder="Product name" required>
+                    </md-input-container>
+                    <md-input-container class="p-0 m-b-0">
+                        <input id="reference" ng-model="reference" placeholder="Product reference" required>
+                    </md-input-container>
+                    <div id="color-picker" md-color-picker md-color-alpha-channel="false" label="Choose a color" skip-hide="true" open-on-input="true" ng-model="prodColor"></div>
+
+                </form>
+            </md-content>
+        </md-tab>
+        <md-tab label="Price">
+            <md-content>
+                <form ng-submit="nextTab()" name="editProduct">
+                    <md-input-container class="p-0 m-b-0">
+                        <input id="name" ng-model="haulPrice"  type="number" step="0.5" placeholder="Haul price" required>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-icon-right md-block p-0 m-b-0">
+                        <input id="reference" ng-model="sellPrice" type="number" step="0.5"  placeholder="Sell price" required>
+                        <!-- <i class="material-icons">euro_symbol</i> -->
+                    </md-input-container>
+                </form>
+            </md-content>
+        </md-tab>
+        <md-tab label="Photo">
+            <md-content>
+                <form ng-submit="nextTab()" name="editProduct">
+                    <div id="drag-file" ng-click="">
+                        <i class="material-icons">add_a_photo</i>
+                    </div>
+                </form>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+    <!-- // TODO must be dynamic -->
+    <md-button class="md-primary fl-r" ng-click="nextTab()"  ng-if="selectedIndex < 2"><span>Next </span></md-button>
+    <md-button class="md-primary fl-r" ng-click="createProduct()" ng-if="selectedIndex === 2"><span>Create </span></md-button>
+</div>

@@ -1,0 +1,49 @@
+.addButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    transform: scale(0.7, 0.7);
+    .md-fab {
+        background-color: #9c27b0 !important;
+    }
+}
+#createProjectDialog {
+    border-radius: 0;
+    .dialog-input {
+        // width: 50px !important;
+    }
+}
+md-dialog {
+    border-radius: 0;
+    width: 50%;
+    #createProjectDialog {
+        .create-dialog-title {
+            margin-left: 13px;
+            margin-top: 13px;
+            font-size: 16px;
+            color: rgb(156, 39, 176);
+            margin-bottom: 9px;
+            font-weight: 100;
+        }
+        form {
+            margin-left: 13px;
+            margin-top: 13px;
+            font-size: 12px;
+            md-input-container {
+                width: 95%;
+            }
+            #color-picker{
+              padding-right: 15px;
+            }
+            #drag-file {
+                height: 160px;
+                margin: 10px;
+                border: gray 1px;
+                border-style: dashed;
+                .material-icons {
+                    margin: 16% auto auto 46%;
+                }
+            }
+        }
+    }
+}
