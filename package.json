@@ -19,6 +19,7 @@
   "homepage": "https://github.com/macedobrito/material#readme",
   "dependencies": {
     "electron": "^1.6.10",
+    "electron-drag": "^1.2.0",
     "jquery": "^3.2.1",
     "jsdom": "^11.0.0"
   }

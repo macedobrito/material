@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="./bower_components/md-color-picker/dist/mdColorPicker.min.css" rel="stylesheet" />
 </head>
+
 <!-- BOWER COMPONENTS -->
 <script src="./bower_components/jquery/dist/jquery.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
@@ -22,8 +23,14 @@
 <script src="./bower_components/angular-route/angular-route.js"></script>
 <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- <script src="./bower_components/tinycolor/dist/tinycolor-min.js"></script> -->
-<script src="./bower_components/md-color-picker/dist/mdColorPicker.js"></script>
 
+<script src="./bower_components/ng-flow/src/directives/init.js"></script>
+<script src="./bower_components/md-color-picker/dist/mdColorPicker.js"></script>
+<script src="./bower_components/flow.js/dist/flow.min.js"></script>
+<script src="./bower_components/ng-flow/dist/ng-flow.min.js"></script>
+
+<script src="scripts/appConfig.js"></script>
+<script src="scripts/services/serviceModule.js"></script>
 
 <!-- CORE -->
 <script src="scripts/modules/core/coreModule.js"></script>
@@ -33,9 +40,16 @@
 <script src="scripts/modules/core/controllers/menuController.js"></script>
 <!-- DIRECTIVES -->
 <script src="scripts/directives/product-card/controller/productCard.js"></script>
+<script src="scripts/directives/dragAndDrop/controller/dragAndDrop.js"></script>
 <!-- PRODUCTS -->
 <script src="scripts/modules/products/controllers/productsController.js"></script>
-<!--<script src="scripts/modules/core/constantsModule.js"></script>-->
+
+<!-- SERVICES -->
+<script src="scripts/services/productServices.js"></script>
+<script src="scripts/services/imageServices.js"></script>
+<script src="scripts/services/toastService.js"></script>
+
+<script src="scripts/modules/core/constantsModule.js"></script>
 <!-- I18N -->
 <script src="scripts/modules/i18n/coreTranslations.js"></script>
 <script>
@@ -47,6 +61,8 @@
     }
     require('./render.js')
 </script>
+
+<script>window.$ = window.jQuery = require('jquery');</script>
 
 
 <body id="app-frame">

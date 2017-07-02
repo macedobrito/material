@@ -1,6 +1,7 @@
+var fabric = require('./bower_components/fabric/dist/all.min.js')
 angular.module('material', [
-  'ngMaterial', 'mdColorPicker', 'ui.router', 'material.router', 'pascalprecht.translate',
-  'material.directives'
+  'ngMaterial', 'mdColorPicker', 'ui.router', 'material.router', 'pascalprecht.translate', 'flow',
+  'material.directives', 'material.services', 'material.constants'
 ]).run(function($rootScope, $controller) {
 
 })
@@ -26,4 +27,6 @@ angular.module('material', [
     $mdThemingProvider.theme('default')
         .primaryPalette('purple')
         .accentPalette('purple');
+}).config(function(flowFactoryProvider) {
+    flowFactoryProvider.defaults = {singleFile: true};
 });

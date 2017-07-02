@@ -10,7 +10,7 @@ angular.module('material.directives').directive('productCard', function() {
             showRemoveButton: '@',
             removeFunction: '&',
             showCardButton: '@',
-            showCardFunction: '&',
+            editProduct: '&',
             index:'@'
         }
     };

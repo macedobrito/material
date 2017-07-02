@@ -1,3 +1,8 @@
-<md-card class="product-card col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-click="" md-ink-ripple="#D2D2D5">
-  <div class="title" style="padding-top: 5px;color: #6b6b6b;font-weight: 500;">Lingerie</div>
+<md-card class="product-card" ng-click="editProduct(prod)" md-ink-ripple="{{card.color}}" style="background-position: center; background-color:{{card.color}};background-blend-mode: multiply; background-image: url({{card.photos[0].url}});">
+  <div class="title" style="padding-top: 5px;color: #fff;font-weight: 500;padding-left: 12px;">{{card.name}}</div>
+  <div class="reference" style="font-size: 12px;
+    padding-top: 5px;
+    color: #fff;
+    mix-blend-mode: exclusion;
+    font-weight: 500;padding-left: 12px;">{{card.reference}}</div>
 </md-card>
